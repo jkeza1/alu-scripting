@@ -1,1 +1,1 @@
-API
+API -alu_scripting
