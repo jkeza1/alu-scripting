@@ -1,16 +1,17 @@
 #!/usr/bin/python3
-"""0-subs.py"""
+"""Return the number of subscribers of a given subreddit"""
 
 import requests
 
 
 def number_of_subscribers(subreddit):
-    """Reddit subscribers"""
-    url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
-    headers = {"User-Agent": "My-User-Agent"}
+    """function that fetches number_of_subscribers"""
+    URL = "https://www.reddit.com/r/{}/about.json".format(subreddit)
+    HEADERS = {"User-Agent": "PostmanRuntime/7.35.0"}
 
-    response = requests.get(url, headers=headers, allow_redirects=False)
-    if response.status_code != 200:
+    try:
+        RESPONSE = requests.get(URL, headers=HEADERS, allow_redirects=False)
+        return RESPONSE.json().get("data").get("subscribers")
+
+    except Exception:
         return 0
-    else:
-        return response.json().get("data").get("subscribers")
